@@ -1,7 +1,7 @@
 'use strict'
 
 const connectToDatabase = require('./db')
-const HTTPError = function (statusCode, message) {
+function HTTPError (statusCode, message) {
   const error = new Error(message)
   error.statusCode = statusCode
   return error
