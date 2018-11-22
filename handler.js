@@ -1,11 +1,19 @@
 'use strict'
 
-require('dotenv').config({ path: './sample.variables.env' })
 const connectToDatabase = require('./db')
 const HTTPError = function (statusCode, message) {
   const error = new Error(message)
   error.statusCode = statusCode
   return error
+}
+
+module.exports.healthCheck = async () => {
+  await connectToDatabase()
+  console.log('Connection successful.')
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Connection successful.' })
+  }
 }
 
 module.exports.create = async (event) => {
