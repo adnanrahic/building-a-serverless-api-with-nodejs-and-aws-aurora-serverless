@@ -1,0 +1,48 @@
+service: rest-api
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  timeout: 10
+  stage: dev
+  region: eu-central-1
+
+functions:
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+  getOne:
+    handler: handler.getOne
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+          cors: true
+  getAll:
+    handler: handler.getAll
+    events:
+     - http:
+         path: notes
+         method: get
+         cors: true
+  update:
+    handler: handler.update
+    events:
+     - http:
+         path: notes/{id}
+         method: put
+         cors: true
+  destroy:
+    handler: handler.destroy
+    events:
+     - http:
+         path: notes/{id}
+         method: delete
+         cors: true
+
+plugins:
+  - serverless-offline
