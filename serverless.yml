@@ -1,4 +1,4 @@
-service: rest-api
+service: web-api
 
 custom:
   secrets: ${file(secrets.json)}

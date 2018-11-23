@@ -69,8 +69,8 @@ module.exports.getAll = async () => {
 }
 
 module.exports.update = async (event) => {
-  const input = JSON.parse(event.body)
   try {
+    const input = JSON.parse(event.body)
     const { Note } = await connectToDatabase()
     const note = await Note.findById(event.pathParameters.id)
     if (!note) throw new HTTPError(404, `Note with id: ${event.pathParameters.id} was not found`)
